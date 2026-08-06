@@ -1,177 +1,273 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Clock, ExternalLink, Mail, MapPin, Phone } from "lucide-react";
 import { useState } from "react";
 import { Reveal } from "@/components/site/Reveal";
+import { HeroContactAside, PageHero } from "@/components/site/PageHero";
+import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Rahisi Movers | Free Moving Quote in Nairobi" },
+      { title: "Contact Rahisi Movers | Nairobi" },
       {
         name: "description",
-        content:
-          "Call +254 700 000 000 or send an enquiry for a free moving survey and fixed quote anywhere in Kenya or abroad.",
-      },
-      { property: "og:title", content: "Contact Rahisi Movers" },
-      {
-        property: "og:description",
-        content: "Get a free survey and a fixed quote for your move.",
+        content: `Call ${SITE.phone} or send an enquiry for a free survey and fixed quote.`,
       },
     ],
   }),
   component: ContactPage,
 });
 
-const DETAILS = [
-  { Icon: Phone, label: "Phone", value: "+254 700 000 000", href: "tel:+254700000000" },
-  {
-    Icon: Mail,
-    label: "Email",
-    value: "hello@rahisimovers.co.ke",
-    href: "mailto:hello@rahisimovers.co.ke",
-  },
-  { Icon: MapPin, label: "Office", value: "Enterprise Road, Industrial Area, Nairobi" },
-  { Icon: Clock, label: "Hours", value: "Mon–Sat, 7:00 – 19:00 EAT" },
-];
+const labelClass =
+  "block text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground";
+const inputClass =
+  "block w-full rounded-xl border border-border bg-background px-4 py-3 text-base text-ink outline-none transition placeholder:text-muted-foreground/70 focus:border-saffron-deep focus:ring-2 focus:ring-saffron/25";
 
 function ContactPage() {
   const [sent, setSent] = useState(false);
 
-  const inputClass =
-    "mt-2 w-full border border-gray-300 bg-background px-4 py-4 focus:border-accent focus:outline-none";
-
   return (
     <>
-      <section className="grain bg-gray-900 px-5 py-20 text-background md:px-10 md:py-32">
-        <div className="mx-auto max-w-[1400px]">
-          <p className="eyebrow text-accent">Contact</p>
-          <h1 className="display mt-4 max-w-4xl text-[clamp(3.5rem,10vw,8rem)]">
-            Get a fixed quote
-          </h1>
-          <p className="mt-8 max-w-xl leading-relaxed text-gray-300">
-            Tell us about the move and we will arrange a free survey — on site
-            or over video — then send a written, all-inclusive price.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Contact"
+        title={
+          <>
+            Let&apos;s plan
+            <br />
+            the move
+          </>
+        }
+        description={
+          <>
+            Free survey, written price. Fill the enquiry form — or jump to an{" "}
+            <Link
+              to="/quote"
+              className="font-bold text-accent underline-offset-2 hover:underline"
+            >
+              online estimate
+            </Link>
+            .
+          </>
+        }
+        aside={<HeroContactAside />}
+      />
 
-      <section className="px-5 py-20 md:px-10 md:py-28">
-        <div className="mx-auto grid max-w-[1400px] gap-14 lg:grid-cols-[0.8fr_1.2fr]">
-          <Reveal>
-            <dl className="space-y-8">
-              {DETAILS.map(({ Icon, label, value, href }) => (
-                <div key={label} className="border-t border-gray-300 pt-6">
-                  <dt className="eyebrow flex items-center gap-2 text-gray-500">
-                    <Icon size={14} aria-hidden="true" /> {label}
-                  </dt>
-                  <dd className="mt-2 text-lg">
-                    {href ? (
-                      <a href={href} className="hover:text-accent">
-                        {value}
+      <section className="px-5 py-10 md:px-10 md:py-14">
+        <Reveal className="mx-auto max-w-[1100px]">
+          {/* One card, two columns — shared edges so nothing can sit off-level */}
+          <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+            <div className="grid lg:grid-cols-2 lg:items-stretch">
+              {/* LEFT */}
+              <div className="flex flex-col border-b border-border p-6 sm:p-8 lg:border-b-0 lg:border-r">
+                <header className="min-h-[4.5rem]">
+                  <h2 className="font-display text-2xl leading-none">
+                    Reach us
+                  </h2>
+                  <p className="mt-2 text-sm leading-snug text-muted-foreground">
+                    Same day reply during business hours.
+                  </p>
+                </header>
+
+                <ul className="mt-6 flex flex-1 flex-col border-t border-border">
+                  <li className="flex gap-3 border-b border-border py-4">
+                    <Phone
+                      size={18}
+                      className="mt-0.5 shrink-0 text-saffron-deep"
+                      aria-hidden
+                    />
+                    <div className="min-w-0 flex-1">
+                      <p className={labelClass}>Phone</p>
+                      <a
+                        href={SITE.phoneHref}
+                        className="mt-1.5 block text-base font-semibold hover:text-saffron-deep sm:text-lg"
+                      >
+                        {SITE.phone}
                       </a>
-                    ) : (
-                      value
-                    )}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            {sent ? (
-              <div
-                aria-live="polite"
-                className="border border-gray-900 bg-gray-100 p-10"
-              >
-                <h2 className="display text-4xl">Enquiry noted</h2>
-                <p className="mt-4 leading-relaxed text-gray-700">
-                  Thanks — this demo form does not yet send anywhere. For a real
-                  quote today, call{" "}
-                  <a href="tel:+254700000000" className="font-semibold underline">
-                    +254 700 000 000
-                  </a>
-                  .
-                </p>
-                <button
-                  type="button"
-                  onClick={() => setSent(false)}
-                  className="mt-8 border border-gray-900 px-6 py-3 font-semibold transition-colors hover:bg-gray-900 hover:text-background"
-                >
-                  Send another
-                </button>
+                    </div>
+                  </li>
+                  <li className="flex gap-3 border-b border-border py-4">
+                    <Mail
+                      size={18}
+                      className="mt-0.5 shrink-0 text-saffron-deep"
+                      aria-hidden
+                    />
+                    <div className="min-w-0 flex-1">
+                      <p className={labelClass}>Email</p>
+                      <a
+                        href={SITE.emailHref}
+                        className="mt-1.5 block break-all text-base font-semibold hover:text-saffron-deep sm:text-lg"
+                      >
+                        {SITE.email}
+                      </a>
+                    </div>
+                  </li>
+                  <li className="flex gap-3 border-b border-border py-4">
+                    <MapPin
+                      size={18}
+                      className="mt-0.5 shrink-0 text-saffron-deep"
+                      aria-hidden
+                    />
+                    <div className="min-w-0 flex-1">
+                      <p className={labelClass}>Office</p>
+                      <a
+                        href={SITE.mapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-1.5 block text-base font-semibold leading-snug hover:text-saffron-deep sm:text-lg"
+                      >
+                        {SITE.address}
+                      </a>
+                      <a
+                        href={SITE.mapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-3 inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-bold text-accent-foreground"
+                      >
+                        Directions <ExternalLink size={14} />
+                      </a>
+                    </div>
+                  </li>
+                  <li className="flex gap-3 py-4">
+                    <Clock
+                      size={18}
+                      className="mt-0.5 shrink-0 text-saffron-deep"
+                      aria-hidden
+                    />
+                    <div className="min-w-0 flex-1">
+                      <p className={labelClass}>Hours</p>
+                      <p className="mt-1.5 text-base font-semibold sm:text-lg">
+                        {SITE.hours}
+                      </p>
+                    </div>
+                  </li>
+                </ul>
               </div>
-            ) : (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setSent(true);
-                }}
-                className="grid gap-6 sm:grid-cols-2"
-              >
-                <div>
-                  <label htmlFor="name" className="eyebrow text-gray-500">
-                    Full name
-                  </label>
-                  <input id="name" name="name" required className={inputClass} />
-                </div>
-                <div>
-                  <label htmlFor="phone" className="eyebrow text-gray-500">
-                    Phone
-                  </label>
-                  <input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    required
-                    className={inputClass}
-                  />
-                </div>
-                <div className="sm:col-span-2">
-                  <label htmlFor="email" className="eyebrow text-gray-500">
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    className={inputClass}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="from" className="eyebrow text-gray-500">
-                    Moving from
-                  </label>
-                  <input id="from" name="from" className={inputClass} />
-                </div>
-                <div>
-                  <label htmlFor="to" className="eyebrow text-gray-500">
-                    Moving to
-                  </label>
-                  <input id="to" name="to" className={inputClass} />
-                </div>
-                <div className="sm:col-span-2">
-                  <label htmlFor="details" className="eyebrow text-gray-500">
-                    Tell us about the move
-                  </label>
-                  <textarea
-                    id="details"
-                    name="details"
-                    rows={5}
-                    className={inputClass}
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="bg-accent px-8 py-4 font-semibold text-accent-foreground transition-colors hover:bg-gray-900 hover:text-background sm:col-span-2 sm:justify-self-start"
-                >
-                  Send enquiry
-                </button>
-              </form>
-            )}
-          </Reveal>
-        </div>
+
+              {/* RIGHT */}
+              <div className="flex flex-col p-6 sm:p-8">
+                {sent ? (
+                  <div className="flex flex-1 flex-col justify-center">
+                    <h2 className="font-display text-2xl">Got it</h2>
+                    <p className="mt-3 max-w-md text-muted-foreground">
+                      Demo form only — for a real quote call{" "}
+                      <a href={SITE.phoneHref} className="font-bold underline">
+                        {SITE.phone}
+                      </a>
+                      .
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setSent(false)}
+                      className="mt-6 w-fit rounded-full border border-ink px-6 py-3 text-sm font-bold"
+                    >
+                      Send another
+                    </button>
+                  </div>
+                ) : (
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      setSent(true);
+                    }}
+                    className="flex h-full flex-col"
+                  >
+                    <header className="min-h-[4.5rem]">
+                      <h2 className="font-display text-2xl leading-none">
+                        Send an enquiry
+                      </h2>
+                      <p className="mt-2 text-sm leading-snug text-muted-foreground">
+                        We reply during business hours — or call anytime.
+                      </p>
+                    </header>
+
+                    <div className="mt-6 grid flex-1 grid-cols-2 gap-x-4 gap-y-4 border-t border-border pt-6">
+                      <div className="col-span-2 space-y-1.5 sm:col-span-1">
+                        <label htmlFor="name" className={labelClass}>
+                          Name
+                        </label>
+                        <input
+                          id="name"
+                          name="name"
+                          required
+                          autoComplete="name"
+                          className={inputClass}
+                        />
+                      </div>
+                      <div className="col-span-2 space-y-1.5 sm:col-span-1">
+                        <label htmlFor="phone" className={labelClass}>
+                          Phone
+                        </label>
+                        <input
+                          id="phone"
+                          name="phone"
+                          type="tel"
+                          required
+                          autoComplete="tel"
+                          className={inputClass}
+                        />
+                      </div>
+                      <div className="col-span-2 space-y-1.5">
+                        <label htmlFor="email" className={labelClass}>
+                          Email
+                        </label>
+                        <input
+                          id="email"
+                          name="email"
+                          type="email"
+                          required
+                          autoComplete="email"
+                          className={inputClass}
+                        />
+                      </div>
+                      <div className="col-span-1 space-y-1.5">
+                        <label htmlFor="from" className={labelClass}>
+                          From
+                        </label>
+                        <input
+                          id="from"
+                          name="from"
+                          placeholder="e.g. Kilimani"
+                          className={inputClass}
+                        />
+                      </div>
+                      <div className="col-span-1 space-y-1.5">
+                        <label htmlFor="to" className={labelClass}>
+                          To
+                        </label>
+                        <input
+                          id="to"
+                          name="to"
+                          placeholder="e.g. Karen"
+                          className={inputClass}
+                        />
+                      </div>
+                      <div className="col-span-2 space-y-1.5">
+                        <label htmlFor="details" className={labelClass}>
+                          Details
+                        </label>
+                        <textarea
+                          id="details"
+                          name="details"
+                          rows={3}
+                          placeholder="Rooms, stairs, preferred date…"
+                          className={`${inputClass} min-h-[96px] resize-y`}
+                        />
+                      </div>
+                      <div className="col-span-2 mt-1">
+                        <button
+                          type="submit"
+                          className="w-full rounded-full bg-accent py-3.5 text-sm font-bold text-accent-foreground transition hover:brightness-105"
+                        >
+                          Send enquiry
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                )}
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </section>
     </>
   );

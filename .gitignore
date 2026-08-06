@@ -30,3 +30,29 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# secrets
+.env
+.env.local
+.env.*.local
+.env.*
+
+# local helpers / install noise
+install-result.txt
+run-log.txt
+retry-install.bat
+run-dev.bat
+start-project.bat
+start-project.ps1
+*.log
+
+# temporary generation logs
+src/assets/generated/_*.json
+src/assets/generated/_probe*
+src/assets/generated/test-*
+scripts/gen-*.txt
+scripts/gen-*.log
+scripts/*-run.log
+scripts/*-out.txt
+scripts/*-err.txt
+

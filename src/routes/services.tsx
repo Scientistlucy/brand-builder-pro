@@ -1,22 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
+import { HeroContactAside, PageHero } from "@/components/site/PageHero";
 import { SERVICES } from "@/components/site/services-data";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Moving Services in Nairobi | Rahisi Movers" },
+      { title: "Moving Services Nairobi | Rahisi Movers" },
       {
         name: "description",
         content:
-          "Residential moving, office relocation and international shipping from Nairobi — packing, crating, customs clearance and storage.",
-      },
-      { property: "og:title", content: "Moving Services | Rahisi Movers" },
-      {
-        property: "og:description",
-        content:
-          "Residential, office and international relocation services across Kenya and beyond.",
+          "Home moving, office relocation, packing, storage and international shipping from Nairobi.",
       },
     ],
   }),
@@ -26,55 +21,64 @@ export const Route = createFileRoute("/services")({
 function ServicesPage() {
   return (
     <>
-      <section className="grain bg-gray-900 px-5 py-20 text-background md:px-10 md:py-32">
-        <div className="mx-auto max-w-[1400px]">
-          <p className="eyebrow text-accent">Services</p>
-          <h1 className="display mt-4 max-w-4xl text-[clamp(3.5rem,10vw,8rem)]">
-            Every move, handled end to end
-          </h1>
-          <p className="mt-8 max-w-xl leading-relaxed text-gray-300">
-            Three service lines, one standard of care. Survey first, plan in
-            writing, wrap everything, arrive on time.
-          </p>
+      <PageHero
+        eyebrow="Services"
+        title="Every lane covered"
+        description="Home, office, packing, storage and freights — same checklist, same care. Jump in with a free estimate."
+        aside={<HeroContactAside />}
+      />
+
+      {/* Quick jump chips — fills unused space under intro */}
+      <div className="border-b border-border bg-card px-5 py-4 md:px-10">
+        <div className="mx-auto flex max-w-[1400px] flex-wrap gap-2">
+          {SERVICES.map((s) => (
+            <a
+              key={s.id}
+              href={`#${s.id}`}
+              className="rounded-full border border-border px-4 py-2 text-sm font-semibold transition hover:border-ink hover:bg-ink hover:text-background"
+            >
+              {s.title}
+            </a>
+          ))}
         </div>
-      </section>
+      </div>
 
       {SERVICES.map((s, i) => (
         <section
           key={s.id}
           id={s.id}
-          className="scroll-mt-24 border-b border-gray-300 px-5 py-20 md:px-10 md:py-28"
+          className="scroll-mt-28 border-b border-border px-5 py-12 md:px-10 md:py-16"
         >
           <div
-            className={`mx-auto grid max-w-[1400px] gap-12 lg:grid-cols-2 lg:items-center ${
+            className={`mx-auto grid max-w-[1400px] gap-8 lg:grid-cols-2 lg:items-center ${
               i % 2 === 1 ? "lg:[&>figure]:order-2" : ""
             }`}
           >
-            <figure className="aspect-4/3 overflow-hidden">
+            <figure className="aspect-4/3 overflow-hidden rounded-2xl">
               <img
                 src={s.image}
                 alt={s.title}
                 loading="lazy"
-                className="size-full object-cover grayscale"
+                className="size-full object-cover"
               />
             </figure>
             <Reveal>
-              <s.Icon size={32} className="text-accent" aria-hidden="true" />
-              <h2 className="display mt-6 text-5xl md:text-7xl">{s.title}</h2>
-              <p className="mt-6 max-w-xl leading-relaxed text-gray-700">
+              <s.Icon size={28} className="text-saffron-deep" />
+              <h2 className="font-display mt-3 text-3xl md:text-4xl">{s.title}</h2>
+              <p className="mt-3 max-w-xl leading-relaxed text-muted-foreground">
                 {s.detail}
               </p>
-              <ul className="mt-8 space-y-3">
+              <ul className="mt-5 space-y-2.5">
                 {s.points.map((p) => (
                   <li key={p} className="flex gap-3 text-sm">
-                    <Check size={18} className="shrink-0 text-accent" aria-hidden="true" />
+                    <Check size={18} className="shrink-0 text-accent" />
                     <span>{p}</span>
                   </li>
                 ))}
               </ul>
               <Link
-                to="/contact"
-                className="mt-10 inline-block bg-gray-900 px-8 py-4 font-semibold text-background transition-colors hover:bg-accent hover:text-accent-foreground"
+                to="/quote"
+                className="mt-7 inline-block rounded-full bg-ink px-8 py-3.5 text-sm font-bold text-background transition-transform hover:scale-[1.02]"
               >
                 Request a quote
               </Link>

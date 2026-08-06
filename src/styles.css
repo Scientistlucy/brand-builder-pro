@@ -5,34 +5,34 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * Route Manifest design system
+ * Asphalt ink + warm canvas + high-chroma saffron
  */
 
 @theme inline {
-  --font-display: "Bebas Neue", "Anton", system-ui, sans-serif;
-  --font-sans: "Work Sans", system-ui, sans-serif;
-  --radius-sm: 0px;
-  --radius-md: 0px;
-  --radius-lg: 0px;
-  --radius-xl: 0px;
-  --radius-2xl: 0px;
-  --radius-3xl: 0px;
-  --radius-4xl: 0px;
+  --font-display: "Syne", system-ui, sans-serif;
+  --font-sans: "Outfit", system-ui, sans-serif;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-2xl: 22px;
+  --radius-3xl: 28px;
+  --radius-4xl: 32px;
+
   --color-gray-100: var(--gray-100);
   --color-gray-300: var(--gray-300);
   --color-gray-500: var(--gray-500);
   --color-gray-700: var(--gray-700);
   --color-gray-900: var(--gray-900);
+
+  --color-ink: var(--ink);
+  --color-canvas: var(--canvas);
+  --color-saffron: var(--saffron);
+  --color-saffron-deep: var(--saffron-deep);
+  --color-route: var(--route);
+  --color-lane: var(--lane);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -70,85 +70,75 @@
 }
 
 :root {
-  --radius: 0px;
-  --gray-100: oklch(0.968 0 0);
-  --gray-300: oklch(0.858 0 0);
-  --gray-500: oklch(0.629 0 0);
-  --gray-700: oklch(0.396 0 0);
-  --gray-900: oklch(0.201 0 0);
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.201 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.201 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.201 0 0);
-  --primary: oklch(0.201 0 0);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.968 0 0);
-  --secondary-foreground: oklch(0.201 0 0);
-  --muted: oklch(0.968 0 0);
-  --muted-foreground: oklch(0.48 0 0);
-  --accent: oklch(0.744 0.107 82.5);
-  --accent-foreground: oklch(0.201 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.858 0 0);
-  --input: oklch(0.858 0 0);
-  --ring: oklch(0.744 0.107 82.5);
-  --chart-1: oklch(0.744 0.107 82.5);
-  --chart-2: oklch(0.396 0 0);
-  --chart-3: oklch(0.629 0 0);
-  --chart-4: oklch(0.858 0 0);
-  --chart-5: oklch(0.201 0 0);
-  --sidebar: oklch(0.968 0 0);
-  --sidebar-foreground: oklch(0.201 0 0);
-  --sidebar-primary: oklch(0.201 0 0);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.744 0.107 82.5);
-  --sidebar-accent-foreground: oklch(0.201 0 0);
-  --sidebar-border: oklch(0.858 0 0);
-  --sidebar-ring: oklch(0.744 0.107 82.5);
+  --radius: 10px;
+
+  --ink: oklch(0.2 0.02 50);
+  --canvas: oklch(0.97 0.018 88);
+  --saffron: oklch(0.82 0.16 78);
+  --saffron-deep: oklch(0.68 0.15 62);
+  --route: oklch(0.88 0.17 92);
+  --lane: oklch(0.55 0.04 55);
+
+  --gray-100: oklch(0.95 0.015 85);
+  --gray-300: oklch(0.88 0.012 80);
+  --gray-500: oklch(0.55 0.02 70);
+  --gray-700: oklch(0.38 0.02 55);
+  --gray-900: oklch(0.2 0.02 50);
+
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  --card: oklch(0.99 0.01 90);
+  --card-foreground: var(--ink);
+  --popover: oklch(0.99 0.01 90);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--canvas);
+  --secondary: var(--gray-100);
+  --secondary-foreground: var(--ink);
+  --muted: var(--gray-100);
+  --muted-foreground: oklch(0.48 0.025 65);
+  --accent: var(--saffron);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.86 0.015 80);
+  --input: oklch(0.86 0.015 80);
+  --ring: var(--saffron-deep);
+  --chart-1: var(--saffron);
+  --chart-2: var(--ink);
+  --chart-3: var(--lane);
+  --chart-4: var(--gray-300);
+  --chart-5: var(--saffron-deep);
+  --sidebar: var(--gray-100);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ink);
+  --sidebar-primary-foreground: var(--canvas);
+  --sidebar-accent: var(--saffron);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--saffron-deep);
 }
 
-
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --background: var(--ink);
+  --foreground: var(--canvas);
+  --card: oklch(0.25 0.02 50);
+  --card-foreground: var(--canvas);
+  --muted: oklch(0.28 0.02 50);
+  --muted-foreground: oklch(0.75 0.02 80);
+  --accent: var(--saffron);
+  --accent-foreground: var(--ink);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 14%);
 }
 
 @layer base {
   * {
     border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
@@ -159,44 +149,181 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
+    outline: 2px solid var(--saffron-deep);
+    outline-offset: 3px;
   }
 
   ::selection {
-    background: var(--accent);
-    color: var(--gray-900);
+    background: var(--saffron);
+    color: var(--ink);
   }
 }
 
-/* Display type: Bebas Neue is all-caps and tightly set by nature. */
+@utility font-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
 @utility display {
   font-family: var(--font-display);
-  font-weight: 400;
-  line-height: 0.88;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
 }
 
-/* Editorial eyebrow label above section headings. */
 @utility eyebrow {
-  font-size: 0.6875rem;
-  letter-spacing: 0.28em;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 650;
 }
 
-/* Film-grain overlay used on dark full-bleed sections. */
-@utility grain {
+/* Soft atmospheric tint — not heavy diagonal stripes */
+@utility route-lanes {
   position: relative;
-  &::after {
+  overflow: hidden;
+  &::before {
     content: "";
     position: absolute;
     inset: 0;
+    background:
+      radial-gradient(
+        ellipse 90% 80% at 100% 20%,
+        color-mix(in oklch, var(--saffron) 14%, transparent),
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse 60% 70% at 0% 100%,
+        color-mix(in oklch, var(--route) 10%, transparent),
+        transparent 50%
+      );
+    opacity: 1;
     pointer-events: none;
-    opacity: 0.16;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 }
 
+@utility ink-panel {
+  background: var(--ink);
+  color: var(--canvas);
+}
+
+@utility saffron-band {
+  background: linear-gradient(
+    110deg,
+    var(--saffron) 0%,
+    var(--route) 45%,
+    var(--saffron-deep) 100%
+  );
+  color: var(--ink);
+}
+
+@utility bento-card {
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s ease;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px color-mix(in oklch, var(--ink) 12%, transparent);
+  }
+}
+
+/* Trust logo marquee */
+@utility marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-x 38s linear infinite;
+}
+
+@utility marquee-track {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    animation: none;
+  }
+}
+
+/* Hero route SVG stroke draw */
+@keyframes dash-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@utility route-path {
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+  animation: dash-draw 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+/* Hero branded slider Ken Burns */
+@keyframes hero-kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+@utility hero-kenburns {
+  animation: hero-kenburns 5.2s ease-out forwards;
+  transform-origin: center center;
+}
+
+@keyframes hero-slide-progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@utility hero-slide-progress {
+  animation: hero-slide-progress linear forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-kenburns {
+    animation: none;
+  }
+  .hero-slide-progress {
+    animation: none;
+    width: 100%;
+  }
+}
+
+/* Hero slideshow slow zoom (Ken Burns) */
+@keyframes ken-burns {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+@utility animate-ken-burns {
+  animation: ken-burns 5.5s ease-out forwards;
+  transform-origin: center center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ken-burns {
+    animation: none;
+  }
+}

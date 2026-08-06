@@ -1,67 +1,53 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
+import { Logo } from "@/components/site/Logo";
+import { SITE } from "@/lib/site";
 
 export function Footer() {
   return (
-    <footer className="border-t border-gray-700 bg-gray-900 text-background">
-      <div className="mx-auto max-w-[1400px] px-5 py-16 md:px-10 md:py-24">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
+    <footer className="relative overflow-hidden bg-ink text-background">
+      {/* Soft glow — no diagonal stripes */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-90"
+        aria-hidden="true"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 80% at 100% 0%, color-mix(in oklch, var(--saffron) 18%, transparent), transparent 55%), radial-gradient(ellipse 50% 60% at 0% 100%, color-mix(in oklch, var(--route) 12%, transparent), transparent 50%)",
+        }}
+      />
+      <div className="relative mx-auto max-w-[1400px] px-5 py-12 md:px-10 md:py-16">
+        <div className="grid gap-10 md:grid-cols-[1.3fr_1fr_1fr_1fr] md:gap-12">
           <div>
-            <p className="display text-4xl md:text-5xl">
-              Rahisi <span className="text-accent">Movers</span>
+            <Logo variant="onDark" />
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-background/70">
+              Home, office and cross-border moves from Industrial Area, Nairobi.
+              Careful packing. Clear price. Crew on time.
             </p>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-gray-300">
-              Move with confidence. Local and international relocation for homes
-              and businesses across Kenya.
-            </p>
-            <div className="mt-8 flex gap-3">
-              {[
-                { Icon: Facebook, label: "Facebook" },
-                { Icon: Instagram, label: "Instagram" },
-                { Icon: Linkedin, label: "LinkedIn" },
-              ].map(({ Icon, label }) => (
-                <a
-                  key={label}
-                  href="#"
-                  aria-label={`Rahisi Movers on ${label}`}
-                  className="grid size-11 place-items-center border border-gray-700 text-gray-300 transition-colors hover:border-accent hover:text-accent"
-                >
-                  <Icon size={18} />
-                </a>
-              ))}
-            </div>
           </div>
 
           <div>
-            <h2 className="eyebrow text-accent">Contact</h2>
-            <ul className="mt-6 space-y-4 text-sm text-gray-300">
-              <li className="flex gap-3">
-                <Phone size={16} className="mt-0.5 shrink-0 text-accent" />
-                <a href="tel:+254700000000" className="hover:text-accent">
-                  +254 700 000 000
-                </a>
-              </li>
-              <li className="flex gap-3">
-                <Mail size={16} className="mt-0.5 shrink-0 text-accent" />
-                <a href="mailto:hello@rahisimovers.co.ke" className="hover:text-accent">
-                  hello@rahisimovers.co.ke
-                </a>
-              </li>
-              <li className="flex gap-3">
-                <MapPin size={16} className="mt-0.5 shrink-0 text-accent" />
-                <span>Enterprise Road, Industrial Area, Nairobi</span>
-              </li>
+            <h2 className="eyebrow text-accent">Explore</h2>
+            <ul className="mt-5 space-y-3 text-sm text-background/75">
+              {[
+                ["/", "Home"],
+                ["/services", "Services"],
+                ["/process", "How we move"],
+                ["/gallery", "Gallery"],
+                ["/faq", "FAQ"],
+                ["/quote", "Get a quote"],
+              ].map(([to, label]) => (
+                <li key={to}>
+                  <Link to={to} className="transition-colors hover:text-accent">
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
-            <h2 className="eyebrow text-accent">Quick links</h2>
-            <ul className="mt-6 space-y-4 text-sm text-gray-300">
-              <li>
-                <Link to="/services" className="hover:text-accent">
-                  Services
-                </Link>
-              </li>
+            <h2 className="eyebrow text-accent">Company</h2>
+            <ul className="mt-5 space-y-3 text-sm text-background/75">
               <li>
                 <Link to="/about" className="hover:text-accent">
                   About
@@ -74,16 +60,48 @@ export function Footer() {
               </li>
               <li>
                 <Link to="/privacy" className="hover:text-accent">
-                  Privacy Policy
+                  Privacy
                 </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="eyebrow text-accent">Contact</h2>
+            <ul className="mt-5 space-y-4 text-sm text-background/75">
+              <li className="flex gap-3">
+                <Phone size={16} className="mt-0.5 shrink-0 text-accent" />
+                <a href={SITE.phoneHref} className="hover:text-accent">
+                  {SITE.phone}
+                </a>
+              </li>
+              <li className="flex gap-3">
+                <Mail size={16} className="mt-0.5 shrink-0 text-accent" />
+                <a href={SITE.emailHref} className="hover:text-accent">
+                  {SITE.email}
+                </a>
+              </li>
+              <li className="flex gap-3">
+                <MapPin size={16} className="mt-0.5 shrink-0 text-accent" />
+                <a
+                  href={SITE.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-accent"
+                >
+                  {SITE.address}
+                  <span className="mt-1 block text-xs text-accent">
+                    Open in Maps →
+                  </span>
+                </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-2 border-t border-gray-700 pt-8 text-xs text-gray-500 sm:flex-row sm:justify-between">
+        <div className="mt-12 flex flex-col gap-2 border-t border-background/12 pt-6 text-xs text-background/45 sm:flex-row sm:justify-between">
           <p>© {new Date().getFullYear()} Rahisi Movers. All rights reserved.</p>
-          <p>Licensed &amp; insured relocation contractor.</p>
+          <p>Licensed · Insured · Nairobi, Kenya</p>
         </div>
       </div>
     </footer>
